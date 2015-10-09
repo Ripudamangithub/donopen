@@ -108,7 +108,7 @@
                         </li>
                         <?php }else{ ?>
                         <li class="">
-							<a><button class="btn signin btn-myaccount" onclick="location.href='#'" type="button"><?php echo lang_key('My Account');?></button></a>
+							<a><button class="btn btn-myaccount" onclick="location.href='<?php echo site_url('admin');?>'" type="button"><?php echo lang_key('My Account');?></button></a>
                         </li>
                         <li class="">
 							<a><button class="btn signup btn-postad" onclick="location.href='<?php echo site_url('post-ad');?>'" type="button"><?php echo lang_key('Post Free Ad');?></button></a>

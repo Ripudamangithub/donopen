@@ -1,12 +1,3 @@
-    
-	<link href="<?php echo theme_url();?>/assets/css/responsive.css" rel="stylesheet">	
-	<link href="<?php echo theme_url();?>/assets/css/main_style.css" rel="stylesheet">	
-	<link href="<?php echo theme_url();?>/assets/css/flexslider.css" rel="stylesheet">	
-	<script src="<?php echo theme_url();?>/assets/js/jquery.noconflict.js"></script>
-	<script src="<?php echo theme_url();?>/assets/js/jquery.flexslider.js"></script>
-	<script src="<?php echo theme_url();?>/assets/js/theme-scripts.js"></script>
-
-
 
 <?php
 $CI = get_instance();

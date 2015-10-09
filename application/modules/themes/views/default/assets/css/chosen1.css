@@ -113,6 +113,7 @@
   background: url('../img/chosen-sprite.png') no-repeat 100% -22px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
   background: url('../img/chosen-sprite.png') no-repeat 100% -22px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
   background: url('../img/chosen-sprite.png');
+  width: 100% !important;
   background-repeat: no-repeat;
   background-size: 25%;
   background-position: 145px -12px;

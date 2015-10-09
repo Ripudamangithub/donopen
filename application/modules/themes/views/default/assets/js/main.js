@@ -99,7 +99,7 @@ $(document).ready(function(){
 
       return this.each(function() {
 		
-		cssmenu.prepend('<div id="menu-button">' + settings.title + '</div>');
+		cssmenu.prepend('<div id="menu-button" style="display:none;" >' + settings.title + '</div>');
 		$(this).find("#menu-button").on('click', function(){
 		  $(this).toggleClass('menu-opened');
 		  var mainmenu = $(this).next('ul');

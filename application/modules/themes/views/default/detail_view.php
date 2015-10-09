@@ -49,7 +49,7 @@
                 <div class="nav-tabs-one">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#p-nav-1" data-toggle="tab"><?php echo lang_key('kcffdkj'); ?></a></li>
+                        <li class="active"><a href="#p-nav-1" data-toggle="tab"><?php echo lang_key('details'); ?></a></li>
                         <li><a href="#p-nav-2" data-toggle="tab"><?php echo lang_key('contact'); ?></a></li>
                     </ul>
                     <!-- Tab content -->

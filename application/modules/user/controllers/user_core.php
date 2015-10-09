@@ -21,9 +21,13 @@ class User_core extends CI_Controller {
 		
 		if(!is_loggedin())
 		{
-			if(count($_POST)<=0)
-			$this->session->set_userdata('req_url',current_url());
-			redirect(site_url('account/trylogin'));
+			$this->load->helper("url_helper");
+			if($this->uri->segment(2) != "post-ad")
+			{
+				if(count($_POST)<=0)
+				$this->session->set_userdata('req_url',current_url());
+				redirect(site_url('account/trylogin'));
+			}
 		}
 		
 

@@ -81,7 +81,7 @@
 
                 <!-- Navigation starts.  -->
                 <div class="navy">
-                    <ul class="pull-right">
+                    <ul class="pull-right open" style="display:block;">
                         <?php
                             $CI = get_instance();
                             $CI->load->model('admin/page_model');

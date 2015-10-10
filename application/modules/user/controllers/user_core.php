@@ -22,12 +22,15 @@ class User_core extends CI_Controller {
 		if(!is_loggedin())
 		{
 			$this->load->helper("url_helper");
-			if($this->uri->segment(2) != "post-ad")
+			if($this->uri->segment(2) == "post-ad" or $this->uri->segment(2) == "create-ad")
 			{
+			}
+			else
+			{		
 				if(count($_POST)<=0)
 				$this->session->set_userdata('req_url',current_url());
 				redirect(site_url('account/trylogin'));
-			}
+	}
 		}
 		
 
@@ -114,9 +117,14 @@ class User_core extends CI_Controller {
 	public function create_ad()
 	{
 		$state_active = get_settings('classified_settings', 'show_state_province', 'yes');
-
+		
 //		$this->form_validation->set_rules('purpose', 			lang_key('purpose'), 			'required');
 		$this->form_validation->set_rules('category', 			lang_key('category'), 			'required');
+		$this->form_validation->set_rules('sub_category', 		lang_key('Sub category'), 		'required');
+		$this->form_validation->set_rules('manufacturer', 		lang_key('Manufacturer'), 		'required');
+		$this->form_validation->set_rules('email', 				lang_key('email'), 		'required');
+		$this->form_validation->set_rules('phone_no', 			lang_key('phone_no'), 		'required');
+		$this->form_validation->set_rules('manufacturing_year', lang_key('Manufacturing Year'), 		'required');
 		$this->form_validation->set_rules('contact_for_price', 	lang_key('contact_for_price'), 	'xss_clean');
 
 		if($this->input->post('contact_for_price')=='')
@@ -129,14 +137,14 @@ class User_core extends CI_Controller {
 		$this->form_validation->set_rules('selected_city', 		lang_key('city'), 				'xss_clean');
 		$this->form_validation->set_rules('city', 				lang_key('city'), 				'required');
 		$this->form_validation->set_rules('zip_code', 			lang_key('zip_code'), 			'xss_clean');
-		$this->form_validation->set_rules('address', 			lang_key('address'), 			'required');
 		$this->form_validation->set_rules('latitude', 			lang_key('latitude'), 			'required');
 		$this->form_validation->set_rules('longitude', 			lang_key('longitude'), 			'required');
 
 		$this->form_validation->set_rules('title_'.default_lang(), 				lang_key('title'), 				'required');
-		$this->form_validation->set_rules('description_'.default_lang(), 		lang_key('description'), 		'required');
+		$this->form_validation->set_rules('description', 		lang_key('description'), 		'required');
 		
 		$this->form_validation->set_rules('featured_img', 		lang_key('featured_img'), 		'required');
+		
 		$this->create_post_validation();
 		
 		if ($this->form_validation->run() == FALSE)

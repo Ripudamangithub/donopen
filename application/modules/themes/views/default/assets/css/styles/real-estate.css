@@ -57,6 +57,7 @@
 .real-estate .re-big-form .tab-content { 
 	background: rgba(0, 0, 0, 0.40); 
 	border-radius: 5px;
+	margin-bottom: 15px;
 }
 .real-estate .re-big-form form label {
 	font-size: 13px;

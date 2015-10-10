@@ -1041,6 +1041,8 @@
 }
 .radio label{
     padding-left: 0px;
+	font-weight: bold;
+    color: #929295;
 }
 .contact-captcha span{
     float:left;margin-top:7px

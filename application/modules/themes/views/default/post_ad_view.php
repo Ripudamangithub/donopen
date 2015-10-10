@@ -6,6 +6,14 @@
         width: 100%;
     }
     #form-map img { max-width: none; }
+	.post_ad_display
+	{
+		display: none
+	}
+	.sell_prdct
+	{
+		display: block;
+	}
 </style>
 
 <div class="page-heading-two">
@@ -26,12 +34,28 @@
                 <div class="shopping-content">
                     <div class="shopping-checkout">
                         <!-- Heading -->
-                            <h4><?php echo lang_key('basic_info');?></h4>
-                            <hr/>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="inputEmail1"><?php echo lang_key('category');?></label>
-                                <div class="col-md-5">
+                            <h4 class="text-center post_ad_heading"><span><?php echo lang_key('Post Free Ad');?></span></h4>
+							<div class="form-group">
+							
+								<!-- Label -->
+								<label for="name" class="col-sm-3 control-label"></label>
+								<div class="col-sm-9">
+									<!-- Input -->
+									<div class="radio col-md-3">
+										<label>
+											<input type="radio" name="buy_sell" value="Sell" checked <?php echo set_radio('buy_sell', 'Sell', TRUE); ?>/>
+											<?php echo lang_key('I want to Sell');?></label>
+									</div>
+									<div class="radio col-md-3">
+										<label>
+											<input type="radio" name="buy_sell" value="Buy" <?php echo set_radio('buy_sell', 'Buy'); ?>/>
+											<?php echo lang_key('I want to Buy');?></label>
+									</div>
+								</div>
+							</div>
+                            <div class="form-group post_ad_display sell_prdct buy_prdct">
+                                <label class="col-md-3 control-label" for="inputEmail1"><?php echo lang_key('category');?></label>
+                                <div class="col-md-6">
                                     <select name="category" class="form-control">
                                         <option value=""><?php echo lang_key('select_category');?></option>
                                         <?php foreach ($categories as $row) {
@@ -45,9 +69,9 @@
                                 </div>
                             </div>
 							
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="inputEmail1"><?php echo lang_key('Sub Category');?></label>
-                                <div class="col-md-5">
+                            <div class="form-group post_ad_display sell_prdct buy_prdct">
+                                <label class="col-md-3 control-label" for="inputEmail1"><?php echo lang_key('sub_category');?></label>
+                                <div class="col-md-6">
                                     <select name="category" class="form-control">
                                         <option value=""><?php echo lang_key('select_category');?></option>
                                         <?php foreach ($sub_categories as $row) {
@@ -57,14 +81,14 @@
                                         <?php
                                         }?>
                                     </select>
-                                    <?php echo form_error('category');?>
+                                    <?php echo form_error('sub_category');?>
                                 </div>
                             </div>
 
 							
-                            <div class="form-group">
+                            <div class="form-group post_ad_display sell_prdct">
                                 <label class="col-md-3 control-label">&nbsp;</label>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <?php $chk = (isset($_POST['contact_for_price']))?'checked="checked"':'';?>
                                     <input type="checkbox" name="contact_for_price" id="contact_for_price" value="1" <?php echo $chk;?> class="form-control">
                                     <label for="contact_for_price" class="contact_for_price_label"><?php echo lang_key('contact_for_price');?></label>
@@ -72,31 +96,236 @@
                                 </div>
                             </div>
 
-                            <div class="form-group price-input-holder">
+                            <div class="form-group price-input-holder post_ad_display sell_prdct buy_prdct">
                                 <label class="col-md-3 control-label"><?php echo lang_key('price');?></label>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <?php $v = (set_value('price')!='')?set_value('price'):'';?>
                                     <input type="text" name="price" placeholder="<?php echo lang_key('price');?>" value="<?php echo $v;?>" class="form-control">
                                     <?php echo form_error('price');?>
                                 </div>
                             </div>
 
+							    <?php
+								$CI = get_instance();
+								$CI->load->model('admin/system_model');
+								$langs = $CI->system_model->get_all_langs();
+								?>
 
-                            <h4><?php echo lang_key('address_info');?></h4>
-                            <hr/>
 
-                            <div class="form-group">
+
+								<div class="tabbable">
+									<div class="tab-content" id="myTabContent1">
+										 <?php $flag=1; foreach ($langs as $lang=>$long_name){
+										 ?>
+										 <div id="<?php echo $lang;?>" class="tab-pane fade in <?php echo (default_lang()==$lang)?'active':'';?>">
+
+											<div class="form-group post_ad_display sell_prdct buy_prdct buy_prdct">
+												<label class="col-md-3 control-label"><?php echo lang_key('Post Title');?></label>
+												<div class="col-md-6">
+													<?php $v = (set_value('title_'.$lang)!='')?set_value('title_'.$lang):'';?>
+													<input type="text" name="title_<?php echo $lang;?>" placeholder="<?php echo lang_key('title');?>" value="<?php echo $v;?>" class="form-control">
+													<?php echo form_error('title_'.$lang);?>
+												</div>
+											</div>
+											
+											
+											<h4 class="text-center post_ad_heading"><span><?php echo lang_key('Equipment Informations');?></span></h4>
+											<div class="form-group post_ad_display sell_prdct">
+												<label class="col-md-3 control-label"><?php echo lang_key('manufacturer');?></label>
+												<div class="col-md-6">
+												<?php $v = (set_value('manufacturer')!='')?set_value('manufacturer'):'';?>
+													<input id="manufacturer" type="text" name="manufacturer" placeholder="<?php echo lang_key('Manufacturer');?>" value="<?php echo $v;?>" class="form-control">
+													<?php echo form_error('manufacturer');?>
+												</div>
+											</div>
+											
+											<div class="form-group post_ad_display sell_prdct">
+												<label class="col-md-3 control-label"><?php echo lang_key('Manufacturing Year');?></label>
+												<div class="col-md-6">
+												<?php $v = (set_value('manufacturing_year')!='')?set_value('manufacturing_year'):'';?>
+													<input id="manufacturing_year" type="text" name="manufacturing_year" placeholder="<?php echo lang_key('Manufacturing Year');?>" value="<?php echo $v;?>" class="form-control">
+													<?php echo form_error('manufacturing_year');?>
+												</div>
+											</div>
+																						
+											<div class="form-group post_ad_display sell_prdct buy_prdct">
+												<!-- Label -->
+												<label for="name" class="col-sm-3 control-label">Condition</label>
+												<div class="col-sm-9">
+													<!-- Input -->
+													<div class="radio col-md-3">
+														<label>
+															<input type="radio" name="condition" value="New" <?php echo set_radio('condition', 'New', TRUE); ?>/>
+															<?php echo lang_key('New');?></label>
+													</div>
+													<div class="radio col-md-3">
+														<label>
+															<input type="radio" name="condition" value="Pre-Owned" <?php echo set_radio('condition', 'Pre-Owned'); ?>/>
+															<?php echo lang_key('Pre-Owned');?></label>
+													</div>
+												</div>
+											</div>
+											<div class="form-group post_ad_display sell_prdct">
+												<!-- Label -->
+												<label for="name" class="col-sm-3 control-label">Working Condition</label>
+												<div class="col-sm-9">
+													<!-- Input -->
+													<div class="radio col-md-3">
+														<label>
+															<input type="checkbox" name="working_condition" value="Ready-to-use" <?php echo set_radio('working_condition', 'Ready-to-use', TRUE); ?>/>
+															<?php echo lang_key('Ready to Use');?></label>
+													</div>
+													<div class="radio col-md-3">
+														<label>
+															<input type="checkbox" name="working_condition" value="As-it-is" <?php echo set_radio('working_condition', 'As-it-is'); ?>/>
+															<?php echo lang_key('As it is condition');?></label>
+													</div>
+												</div>
+											</div>
+											
+											
+											<div class="form-group post_ad_display sell_prdct">
+												<!-- Label -->
+												<label for="name" class="col-sm-3 control-label">Available for Inspection</label>
+												<div class="col-sm-9">
+													<!-- Input -->
+													<div class="radio col-md-3">
+														<label>
+															<input type="radio" name="Inspection" value="Yes" <?php echo set_radio('Inspection', 'Yes', TRUE); ?>/>
+															<?php echo lang_key('Yes');?></label>
+													</div>
+													<div class="radio col-md-3">
+														<label>
+															<input type="radio" name="Inspection" value="No" <?php echo set_radio('Inspection', 'No'); ?>/>
+															<?php echo lang_key('No');?></label>
+													</div>
+												</div>
+											</div>
+											
+											<div class="form-group post_ad_display sell_prdct">
+												<!-- Label -->
+												<label for="name" class="col-sm-3 control-label">Warranty Available</label>
+												<div class="col-sm-9">
+													<!-- Input -->
+													<div class="radio col-md-3">
+														<label>
+															<input type="radio" name="Warranty" value="Warranty-Yes" <?php echo set_radio('Warranty', 'Warranty-Yes', TRUE); ?>/>
+															<?php echo lang_key('Yes');?></label>
+													</div>
+													<div class="radio col-md-3">
+														<label>
+															<input type="radio" name="Warranty" value="Warranty-No" <?php echo set_radio('Warranty', 'Warranty-No'); ?>/>
+															<?php echo lang_key('No');?></label>
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group post_ad_display buy_prdct">
+												<label class="col-md-3 control-label"><?php echo lang_key('Min Required Quantity');?></label>
+												<div class="col-md-6">
+													<?php $v = (set_value('required_quantity')!='')?set_value('required_quantity'):'';?>
+													<input id="required_quantity" type="text" name="required_quantity" placeholder="<?php echo lang_key('Required Quantity');?>" value="<?php echo $v;?>" class="form-control">
+													<?php echo form_error('required_quantity');?>
+												</div>
+											</div>
+											
+											<div class="form-group  post_ad_display sell_prdct buy_prdct">
+												<label class="col-md-3 control-label"><?php echo lang_key('description');?></label>
+												<div class="col-md-6">
+													<?php $v = (set_value('description_'.$lang)!='')?set_value('description_'.$lang):'';?>
+													<textarea rows="8" name="description_<?php echo $lang;?>" class="form-control"><?php echo $v;?></textarea>
+													<?php echo form_error('description');?>
+												</div>
+											</div>
+											
+										</div>
+										<?php $flag++; }?>
+									</div>
+								</div>
+
+
+
+									<div class="form-group post_ad_display sell_prdct">
+										<label class="col-md-3 control-label"><?php echo lang_key('tags');?></label>
+										<div class="col-md-6">
+											<?php $v = (set_value('tags')!='')?set_value('tags'):'';?>
+											<textarea rows="1" name="tags" class="form-control tag-input"><?php echo $v;?></textarea>
+											<span><?php echo lang_key('put_as_comma_seperated')?></span>
+											<?php echo form_error('tags');?>
+										</div>
+									</div>
+
+									<div class="form-group  post_ad_display sell_prdct">
+										<label class="col-md-3 control-label"><?php echo lang_key('featured_image');?></label>
+										<div class="col-md-6">
+											<div class="featured-img">
+												<?php $v = (set_value('featured_img')!='')?set_value('featured_img'):'';?>
+												<input type="hidden" name="featured_img" id="featured-img-input" value="<?php echo $v;?>">
+												<img id="featured-img" src="<?php echo base_url('uploads/images/no-image.png');?>">
+												<div class="upload-button"><?php echo lang_key('upload');?></div>
+												<?php echo form_error('featured_img');?>
+											</div>
+										</div>
+									</div>
+
+									<?php if(get_settings('package_settings','enable_pricing','No')=='Yes'){?>
+									<div class="form-group post_ad_display sell_prdct">
+										<label class="col-md-3 control-label" style="padding:10px 0;"><?php echo lang_key('selected_package');?></label>
+										<div class="col-md-6">
+											<?php
+											$CI = get_instance();
+											$CI->load->model('admin/package_model');
+											$package  = $CI->package_model->get_package_by_id($this->session->userdata('selected_package'));
+											?>
+											<div class="clearfix" style="margin-top:5px;"></div>
+
+											<div class="" style="padding:10px 0;font-weight:bold">
+												<?php echo lang_key($package->title);?><br/>
+												<?php echo lang_key('price');?> : <?php echo show_package_price($package->price);?><br/>
+												<?php echo lang_key('expirtion_time');?> : <?php echo $package->expiration_time;?> <?php echo lang_key('days'); ?>
+											</div>
+											<div class="clearfix" style="margin-top:5px;"></div>
+											<a href="<?php echo site_url('choose-package');?>" class=""><?php echo lang_key('change_package');?></a>
+										</div>
+									</div>
+									<?php }?>
+
+
+
+									<div class="form-group post_ad_display sell_prdct">
+										<label class="col-md-3 control-label"><?php echo lang_key('gallery');?></label>
+										<div class="col-md-6">
+											<ul class="multiple-uploads">
+												<li class="add-image" id="dragandrophandler">+</li>
+											</ul>       
+											<div class="clearfix"></div>
+											<span class="gallery-upload-instruction">NB: you can drag drop to reorder the gallery photos. Photos are not resized.</span>
+											<div class="clearfix clear-top-margin"></div>
+										</div>
+									</div>  
+            
+                            <h4 class="text-center post_ad_heading"><span><?php echo lang_key('Seller/Buyer Informations');?></span></h4>
+							<div class="form-group post_ad_display sell_prdct buy_prdct">
                                 <label class="col-md-3 control-label"><?php echo lang_key('phone');?></label>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <?php $v = (set_value('phone_no')!='')?set_value('phone_no'):'';?>
                                     <input id="phone_no" type="text" name="phone_no" placeholder="<?php echo lang_key('phone');?>" value="<?php echo $v;?>" class="form-control">
                                     <?php echo form_error('phone_no');?>
                                 </div>
                             </div>
+							
+							<div class="form-group post_ad_display sell_prdct buy_prdct">
+                                <label class="col-md-3 control-label"><?php echo lang_key('Email');?></label>
+                                <div class="col-md-6">
+                                    <?php $v = (set_value('email')!='')?set_value('email'):'';?>
+                                    <input id="phone_no" type="text" name="email" placeholder="<?php echo lang_key('Email');?>" value="<?php echo $v;?>" class="form-control">
+                                    <?php echo form_error('email');?>
+                                </div>
+                            </div>
 
                             <!--<div class="form-group">
                                 <label class="col-md-3 control-label">&nbsp;</label>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <?php $chk = (isset($_POST['hide_my_phone']))?'checked="checked"':'';?>
                                     <input type="checkbox" name="hide_my_phone" id="hide_my_phone" value="1" <?php echo $chk;?> class="form-control">
                                     <label for="hide_my_phone" class="hide_my_phone_label"><?php echo lang_key('hide_my_phone');?></label>
@@ -106,7 +335,7 @@
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label">&nbsp;</label>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <?php $chk = (isset($_POST['hide_my_email']))?'checked="checked"':'';?>
                                     <input type="checkbox" name="hide_my_email" id="hide_my_email" value="1" <?php echo $chk;?> class="form-control">
                                     <label for="hide_my_email" class="hide_my_email_label"><?php echo lang_key('hide_my_email');?></label>
@@ -125,9 +354,9 @@
                             </div>
                             -->
 
-                            <div class="form-group">
+                            <div class="form-group post_ad_display sell_prdct buy_prdct">
                                 <label class="col-md-3 control-label"><?php echo lang_key('country');?></label>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <select name="country" id="country" class="form-control">
                                         <option data-name="" value=""><?php echo lang_key('select_country');?></option>
                                         <?php foreach (get_all_locations_by_type('country')->result() as $row) {
@@ -141,9 +370,9 @@
                             </div>
                         <?php $state_active = get_settings('classified_settings', 'show_state_province', 'yes'); ?>
                         <?php if($state_active == 'yes'){ ?>
-                            <div class="form-group">
+                            <div class="form-group post_ad_display sell_prdct buy_prdct">
                                 <label class="col-md-3 control-label"><?php echo lang_key('state');?></label>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <select name="state" id="state" class="form-control">
 
                                     </select>
@@ -151,9 +380,9 @@
                                 </div>
                             </div>
                         <?php } ?>
-                            <div class="form-group">
+                            <div class="form-group post_ad_display sell_prdct buy_prdct">
                                 <label class="col-md-3 control-label"><?php echo lang_key('city');?></label>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <?php $city_field_type = get_settings('classified_settings', 'city_dropdown', 'autocomplete'); ?>
                                     <input type="hidden" name="selected_city" id="selected_city" value="<?php echo(set_value('selected_city')!='')?set_value('selected_city'):'';?>">
                                     <?php if ($city_field_type=='dropdown') {?>
@@ -161,190 +390,39 @@
                                     </select>
                                     <?php }else {?>
                                     <input type="text" id="city" name="city" value="<?php echo(set_value('city')!='')?set_value('city'):'';?>" placeholder="<?php echo lang_key('city');?>" class="form-control" >
-                                    <span class="help-inline city-loading">&nbsp;</span>
                                     <?php }?>
                                     <?php echo form_error('city');?>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"><?php echo lang_key('zip_code');?></label>
-                                <div class="col-md-8">
-                                    <?php $v = (set_value('zip_code')!='')?set_value('zip_code'):'';?>
-                                    <input type="text" name="zip_code" placeholder="<?php echo lang_key('zip_code');?>" value="<?php echo $v;?>" class="form-control">
-                                    <?php echo form_error('zip_code');?>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
+							
+                            <div class="form-group post_ad_display sell_prdct buy_prdct">
                                 <label class="col-md-3 control-label"><?php echo lang_key('address');?></label>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                 <?php $v = (set_value('address')!='')?set_value('address'):'';?>
                                     <input id="address" type="text" name="address" placeholder="<?php echo lang_key('address');?>" value="<?php echo $v;?>" class="form-control">
                                     <?php echo form_error('address');?>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"></label>
-                                <div class="col-md-8">
-                                    <a href="javascript:void(0)" class="btn btn-danger" onclick="codeAddress()"><i class="fa fa-map-marker"></i> <?php echo lang_key('view_on_map');?></a>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
+							<div class="form-group">
                                 <label class="col-md-3 control-label">&nbsp;</label>
-                                <div class="col-md-8">
-                                    <div id="form-map"></div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"><?php echo lang_key('latitude');?></label>
-                                <div class="col-md-8">
-                                    <?php $v = (set_value('latitude')!='')?set_value('latitude'):'';?>
-                                    <input id="latitude" type="text" name="latitude" placeholder="<?php echo lang_key('latitude');?>" value="<?php echo $v;?>" class="form-control">
-                                    <?php echo form_error('latitude');?>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"><?php echo lang_key('longitude');?></label>
-                                <div class="col-md-8">
-                                    <?php $v = (set_value('longitude')!='')?set_value('longitude'):'';?>
-                                    <input id="longitude" type="text" name="longitude" placeholder="<?php echo lang_key('longitude');?>" value="<?php echo $v;?>" class="form-control">
-                                    <?php echo form_error('longitude');?>
-                                </div>
-                            </div>
-
+                                <div class="radio col-md-8">
+									<label>
+										<input type="checkbox" name="working_condition" value="Ready-to-use" <?php echo set_radio('working_condition', 'Ready-to-use', TRUE); ?>/>
+										<?php echo lang_key('I have read <a href="3">Terms and Conditions</a> and I accept to Post the Ad.');?></label>
+								</div>
+							</div>
+							
                     </div>
                 </div>
 				
-                <h4><?php echo lang_key('general_info');?></h4>
-                <hr/>
 
 
-            <?php
-            $CI = get_instance();
-            $CI->load->model('admin/system_model');
-            $langs = $CI->system_model->get_all_langs();
-            ?>
-
-
-
-            <div class="tabbable">
-                <ul class="nav nav-tabs" id="myTab1">
-                    <?php $flag=1; foreach ($langs as $lang=>$long_name){
-                        ?>
-                    <li class="<?php echo (default_lang()==$lang)?'active':'';?>"><a data-toggle="tab" href="#<?php echo $lang;?>"><i class="fa fa-home"></i> <?php echo $lang;?></a></li>
-                    <?php $flag++; }?>
-                </ul>
-                <div class="tab-content" id="myTabContent1">
-                     <?php $flag=1; foreach ($langs as $lang=>$long_name){
-                     ?>
-                     <div id="<?php echo $lang;?>" class="tab-pane fade in <?php echo (default_lang()==$lang)?'active':'';?>">
-
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"><?php echo lang_key('title');?></label>
-                            <div class="col-md-8">
-                                <?php $v = (set_value('title_'.$lang)!='')?set_value('title_'.$lang):'';?>
-                                <input type="text" name="title_<?php echo $lang;?>" placeholder="<?php echo lang_key('title');?>" value="<?php echo $v;?>" class="form-control">
-                                <?php echo form_error('title_'.$lang);?>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"><?php echo lang_key('description');?></label>
-                            <div class="col-md-8">
-                                <?php $v = (set_value('description_'.$lang)!='')?set_value('description_'.$lang):'';?>
-                                <textarea rows="15" name="description_<?php echo $lang;?>" class="form-control rich"><?php echo $v;?></textarea>
-                                <?php echo form_error('description_'.$lang);?>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <?php $flag++; }?>
-                </div>
-            </div>
-
-
-
-                <div class="form-group">
-                    <label class="col-md-3 control-label"><?php echo lang_key('tags');?></label>
-                    <div class="col-md-8">
-                        <?php $v = (set_value('tags')!='')?set_value('tags'):'';?>
-                        <textarea rows="15" name="tags" class="form-control tag-input"><?php echo $v;?></textarea>
-                        <span><?php echo lang_key('put_as_comma_seperated')?></span>
-                        <?php echo form_error('tags');?>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-3 control-label"><?php echo lang_key('featured_image');?></label>
-                    <div class="col-md-8">
-                        <div class="featured-img">
-                            <?php $v = (set_value('featured_img')!='')?set_value('featured_img'):'';?>
-                            <input type="hidden" name="featured_img" id="featured-img-input" value="<?php echo $v;?>">
-                            <img id="featured-img" src="<?php echo base_url('uploads/images/no-image.png');?>">
-                            <div class="upload-button"><?php echo lang_key('upload');?></div>
-                            <?php echo form_error('featured_img');?>
-                        </div>
-                    </div>
-                </div>
-
-                <?php if(get_settings('package_settings','enable_pricing','No')=='Yes'){?>
-                <div class="form-group">
-                    <label class="col-md-3 control-label" style="padding:10px 0;"><?php echo lang_key('selected_package');?></label>
-                    <div class="col-md-8">
-                        <?php
-                        $CI = get_instance();
-                        $CI->load->model('admin/package_model');
-                        $package  = $CI->package_model->get_package_by_id($this->session->userdata('selected_package'));
-                        ?>
-                        <div class="clearfix" style="margin-top:5px;"></div>
-
-                        <div class="" style="padding:10px 0;font-weight:bold">
-                            <?php echo lang_key($package->title);?><br/>
-                            <?php echo lang_key('price');?> : <?php echo show_package_price($package->price);?><br/>
-                            <?php echo lang_key('expirtion_time');?> : <?php echo $package->expiration_time;?> <?php echo lang_key('days'); ?>
-                        </div>
-                        <div class="clearfix" style="margin-top:5px;"></div>
-                        <a href="<?php echo site_url('choose-package');?>" class=""><?php echo lang_key('change_package');?></a>
-                    </div>
-                </div>
-                <?php }?>
-
-
-
-                <div class="form-group">
-                    <label class="col-md-3 control-label"><?php echo lang_key('gallery');?></label>
-                    <div class="col-md-8">
-                        <?php $tmp_gallery = ($post->gallery!='')?json_decode($post->gallery):array();?>
-                        <?php $gallery = (isset($_POST['gallery']))?$_POST['gallery']:$tmp_gallery;?>
-                        <ul class="multiple-uploads">
-                            <?php foreach ($gallery as $item) {
-                            ?>
-                            <li class="gallery-img-list">
-                              <input type="hidden" name="gallery[]" value="<?php echo $item;?>" />
-                              <img src="<?php echo base_url('uploads/gallery/'.$item);?>" />
-                              <div class="remove-image" onclick="jQuery(this).parent().remove();">X</div>
-                            </li>
-                            <?php }?>
-                            <li class="add-image" id="dragandrophandler">+</li>
-                        </ul>       
-                        <div class="clearfix"></div>
-                        <span class="gallery-upload-instruction">NB: you can drag drop to reorder the gallery photos. Photos are not resized.</span>
-                        <div class="clearfix clear-top-margin"></div>
-                    </div>
-                </div>  
-            
 
         <div class="row">
-            <div class="col-md-12">
-                <hr>
+				<hr>
+            <div class="col-md-4 col-md-offset-4">
                 <div class="form-group" style="text-align:center">
-                    <button class="btn btn-color" type="submit"><?php echo lang_key('Post Ad');?></button>
+                    <button class="btn btn-red btn-block" type="submit"><?php echo lang_key('Post Ad');?></button>
                 </div>
             </div>
         </div>
@@ -359,6 +437,21 @@
 <script src="<?php echo theme_url();?>/assets/jquery-ui/jquery-ui.js"></script>
 <?php require'multiple-uploader.php';?>
 <?php require'bulk_uploader_view.php';?>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        if($(this).attr("value")=="Sell"){
+            $(".post_ad_display").not(".sell_prdct").hide();
+            $(".sell_prdct").show();
+        }
+        if($(this).attr("value")=="Buy"){
+            $(".post_ad_display").not(".buy_prdct").hide();
+            $(".buy_prdct").show();
+        }
+    });
+});
+</script>
+
 <script type="text/javascript">
 jQuery(document).ready(function(){
     
@@ -465,7 +558,6 @@ jQuery(document).ready(function(){
                 jQuery('#state').val(sel_state);
                 else
                 jQuery('#state').val('');
-                jQuery('#state').focus();
                 jQuery('#state').trigger('change');
                 <?php }else{?>
                 var sel_country = '<?php echo (set_value("country")!='')?set_value("country"):'';?>';
@@ -603,27 +695,6 @@ function populate_city(parent) {
 }
 </script>
 
-<script type="text/javascript" src="<?php echo base_url('assets/tinymce/tinymce.min.js');?>"></script>
-
-<script type="text/javascript">
-
-tinymce.init({
-    convert_urls : 0,
-    selector: ".rich",
-    menubar: false,
-    toolbar: "styleselect | bold | link | bullist | numlist | code",
-    plugins: [
-
-         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-
-         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-
-         "save code table contextmenu directionality emoticons template paste textcolor"
-
-   ]
-
- });
-</script>
 <script type="text/javascript">
     var markers = [];
     //    var map;

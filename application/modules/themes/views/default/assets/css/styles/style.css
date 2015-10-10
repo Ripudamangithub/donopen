@@ -5,13 +5,14 @@ body {
     font-size: 13px;
     line-height: 28px;
     background: #fff;
-    font-family: 'Open Sans', sans-serif;
-    -webkit-font-smoothing: antialiased
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: #666;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 600;
     margin: 2px 0;
     padding: 0
@@ -33,7 +34,7 @@ h3 {
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 33px
 }
 
@@ -93,7 +94,7 @@ form {
 }
 
 form label {
-    font-weight: 400
+    /* font-weight: 400 */
 }
 
 dl dd, dl dt {
@@ -1476,9 +1477,9 @@ a.brown:focus, a.brown:hover {
 }
 
 .tab-content {
-    padding-top: 10px;
+    /* padding-top: 10px;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 10px; */
 }
 
 .nav-tabs-one ul.nav-tabs li {
@@ -8276,6 +8277,16 @@ footer a:hover {
 .search_bar_mini
 {
 	display: none;
+}
+.post_ad_heading
+{
+    border-bottom: 1px solid #F7F7F7;
+    margin: 18px 0;
+}
+.post_ad_heading span
+{
+    border-bottom: 2px solid #F8A841;
+	padding-bottom: 6px;
 }
 @media screen and (max-width: 760px) {
     .search_bar_mini

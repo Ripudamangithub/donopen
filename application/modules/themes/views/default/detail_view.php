@@ -45,16 +45,6 @@
         <div class="row">
             <div class="col-md-8 col-sm-12 col-xs-12">
 
-                <!-- Nav tab style 1 starts -->
-                <div class="nav-tabs-one">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#p-nav-1" data-toggle="tab"><?php echo lang_key('details'); ?></a></li>
-                        <li><a href="#p-nav-2" data-toggle="tab"><?php echo lang_key('contact'); ?></a></li>
-                    </ul>
-                    <!-- Tab content -->
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="p-nav-1">
 
                             <div class="single-property">
 
@@ -85,86 +75,6 @@
                                     </ul>
                                 </div>
                                 <div class="clearfix"></div>
-
-                                <hr />
-                                <div class="info-box">
-                                    <?php 
-                                        $fa_icon        = get_category_fa_icon($post->parent_category);
-                                        $category_title = get_category_title_by_id($post->category);
-                                    ?>
-                                    <i class="fa <?php echo $fa_icon; ?> bg-red category"></i>
-                                    <div class="sub-cat">
-                                        <a href="<?php echo site_url('show/categoryposts/'.$post->category.'/'.$category_title);?>"><?php echo $category_title; ?></a>
-                                    </div>
-
-                                    <div class="ad-detail-info">
-                                        <span class="span-left"><i class="fa fa-clock-o clock-icon"></i> <?php echo lang_key('added'); ?>:</span>
-
-                                        <span class="span-right">
-                						    	<?php echo date('M d, Y', $post->create_time); ?>
-                                        </span>
-                                    </div>
-
-                                    <div class="ad-detail-info">
-                                        <span class="span-left"><i class="fa fa-map-marker location-icon"></i> <?php echo lang_key('location'); ?>:</span>
-                
-                                        <span class="span-right">
-                						    	<?php echo get_location_name_by_id($post->city); ?>
-                                        </span>
-                                    </div>
-
-                                    <div class="ad-detail-info">
-                                        <span class="span-left"><i class="fa fa-money price-icon"></i> <?php echo lang_key('price'); ?>:</span>
-                
-                                        <span class="span-right">
-                						    	<?php echo show_price($post->price); ?>
-                                        </span>
-                                    </div>
-
-                                    <div class="ad-detail-info">
-                                        <span class="span-left"><i class="fa fa-eye view-icon"></i> <?php echo lang_key('views'); ?>:</span>
-                
-                                        <span class="span-right">
-                						    	<?php echo $post->total_view; ?>
-                                        </span>
-                                    </div>
-
-                                    <div class="ad-detail-info">
-                                        <span class="span-left"><i class="fa fa-phone phone-icon"></i> <?php echo lang_key('phone'); ?>:</span>
-                
-                                        <span class="span-right">
-                						    	<?php echo $post->phone_no; ?>
-                                        </span>
-                                    </div>
-
-                                    <?php if($post->featured==1){?>
-                                    <div class="ad-detail-info">
-                                        <span class="span-left"><i class="fa fa-bookmark bookmark-icon"></i> <?php echo lang_key('featured'); ?>:</span>
-                
-                                        <span class="span-right">
-                                                <?php echo lang_key('yes'); ?>
-                                        </span>
-                                    </div>
-                                    <?php }?>
-
-                                    <div class="ad-detail-info">
-                                        <span class="span-right">
-                                        <a target="_blank" href="<?php echo site_url('show/printview/'.$post->unique_id);?>"><i class="fa fa-print fa-lg"></i> <?php echo lang_key('print') ?></a></span>
-                                    </div>
-                                    <div class="share-links">
-                                        <span class='st_sharethis_hcount' displayText='ShareThis'></span>
-                                        <span class='st_facebook_hcount' displayText='Facebook'></span>
-                                        <span class='st_twitter_hcount' displayText='Tweet'></span>
-                                        <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
-                                        <span class='st_pinterest_hcount' displayText='Pinterest'></span>
-                                        <span class='st_email_hcount' displayText='Email'></span>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-
-
-
-
                                 <!-- heading -->
                                 <h4 class="info-subtitle"><i class="fa fa-rocket"></i> <?php echo lang_key('details') ?></h4>
 
@@ -226,7 +136,6 @@
                                 ?>
                                 
                                 <?php $full_address = get_formatted_address($post->address, $post->city, $post->state, $post->country, $post->zip_code); ?>
-                                <div id="ad-address"><span><?php echo $full_address; ?></span></div>
                                 
                                 <h4 class="info-subtitle"><i class="fa fa-map-marker"></i> <?php echo lang_key('location_on_map'); ?></h4>
                                 <div class="gmap" id="details-map"></div>
@@ -240,51 +149,10 @@
                                     <input type="hidden" name="video_url" id="video_url" value="<?php echo $post->video_url;?>">
                                 <?php }?>
                             </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="p-nav-2">
-
-                            <div class="single-property sp-agent">
-                                <img class="img-responsive img-thumbnail" src="<?php echo get_profile_photo_by_id($post->created_by); ?>" alt="" />
-                                <h5><?php echo get_user_fullname_by_id($post->created_by); ?></h5>
-
-                                <span><strong><?php echo lang_key('contact_mode'); ?></strong>: <?php echo lang_key('phone'); ?>, <?php echo lang_key('email'); ?></span>
-                                <div class="clearfix"></div>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th><?php echo lang_key('address'); ?></th>
-                                            <td><?php echo $full_address; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th><?php echo lang_key('email'); ?></th>
-                                            <td><?php echo get_user_email_by_id($post->created_by); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th><?php echo lang_key('phone'); ?></th>
-                                            <td><?php echo $post->phone_no; ?></td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <div class="rs-enquiry">
-                                    <h3><?php echo lang_key('send_email_to_user');?></h3>
-                                    <div class="ajax-loading recent-loading"><img src="<?php echo theme_url();?>/assets/img/loading.gif" alt="loading..."></div>
-                                    <div class="clearfix"></div>
-                                    <span class="agent-email-form-holder">
-                                    </span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
                 </div>
-            </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="sidebar">
-                    <div class="s-widget">
+                    <!---<div class="s-widget">
                         <h5><i class="fa fa-photo color"></i>&nbsp; <?php echo lang_key('image_gallery'); ?></h5>
                         <div class="widget-content gallery">
                             <a href="<?php echo base_url('uploads/images/' . $post->featured_img); ?>" class="lightbox"><img src="<?php echo base_url('uploads/images/' . $post->featured_img); ?>" alt="" class="img-responsive img-thumbnail" /></a>
@@ -311,7 +179,47 @@
                         <?php } ?>
                         <div class="clearfix"></div>
                     </div>
-                    <?php render_widgets('right_bar_detail');?>
+                    <?php //render_widgets('right_bar_detail');?>--->
+					 <div class="single-property sp-agent">
+                                <img class="img-responsive img-thumbnail" src="<?php echo get_profile_photo_by_id($post->created_by); ?>" alt="" />
+                                <h5><?php echo get_user_fullname_by_id($post->created_by); ?></h5>
+
+                                <span><strong><?php echo lang_key('contact_mode'); ?></strong>: <?php echo lang_key('phone'); ?>, <?php echo lang_key('email'); ?></span>
+                                <div class="clearfix"></div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th><?php echo lang_key('address'); ?></th>
+                                            <td><?php echo $full_address; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?php echo lang_key('email'); ?></th>
+                                            <td><?php echo get_user_email_by_id($post->created_by); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?php echo lang_key('phone'); ?></th>
+                                            <td><?php echo $post->phone_no; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?php echo lang_key('price'); ?></th>
+                                            <td><?php echo show_price($post->price); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th><?php echo lang_key('added'); ?></th>
+                                            <td><?php echo date('M d, Y', $post->create_time); ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="rs-enquiry">
+                                    <h3><?php echo lang_key('send_email_to_user');?></h3>
+                                    <div class="ajax-loading recent-loading"><img src="<?php echo theme_url();?>/assets/img/loading.gif" alt="loading..."></div>
+                                    <div class="clearfix"></div>
+                                    <span class="agent-email-form-holder">
+                                    </span>
+                                </div>
+
+                            </div>
                 </div>
             </div>
         </div>

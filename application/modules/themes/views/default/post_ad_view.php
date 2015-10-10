@@ -417,6 +417,68 @@
 				
 
 
+<<<<<<< HEAD
+=======
+                <div class="form-group">
+                    <label class="col-md-3 control-label"><?php echo lang_key('featured_image');?></label>
+                    <div class="col-md-8">
+                        <div class="featured-img">
+                            <?php $v = (set_value('featured_img')!='')?set_value('featured_img'):'';?>
+                            <input type="hidden" name="featured_img" id="featured-img-input" value="<?php echo $v;?>">
+                            <img id="featured-img" src="<?php echo base_url('uploads/images/no-image.png');?>">
+                            <div class="upload-button"><?php echo lang_key('upload');?></div>
+                            <?php echo form_error('featured_img');?>
+                        </div>
+                    </div>
+                </div>
+
+                <?php if(get_settings('package_settings','enable_pricing','No')=='Yes'){?>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="padding:10px 0;"><?php echo lang_key('selected_package');?></label>
+                    <div class="col-md-8">
+                        <?php
+                        $CI = get_instance();
+                        $CI->load->model('admin/package_model');
+                        $package  = $CI->package_model->get_package_by_id($this->session->userdata('selected_package'));
+                        ?>
+                        <div class="clearfix" style="margin-top:5px;"></div>
+
+                        <div class="" style="padding:10px 0;font-weight:bold">
+                            <?php echo lang_key($package->title);?><br/>
+                            <?php echo lang_key('price');?> : <?php echo show_package_price($package->price);?><br/>
+                            <?php echo lang_key('expirtion_time');?> : <?php echo $package->expiration_time;?> <?php echo lang_key('days'); ?>
+                        </div>
+                        <div class="clearfix" style="margin-top:5px;"></div>
+                        <a href="<?php echo site_url('choose-package');?>" class=""><?php echo lang_key('change_package');?></a>
+                    </div>
+                </div>
+                <?php } ?>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label"><?php echo lang_key('gallery');?></label>
+                    <div class="col-md-8">
+                        <?php $tmp_gallery = ($post->gallery!='')?json_decode($post->gallery):array();?>
+                        <?php $gallery = (isset($_POST['gallery']))?$_POST['gallery']:$tmp_gallery;?>
+                        <ul class="multiple-uploads">
+                            <?php foreach ($gallery as $item) {
+                            ?>
+                            <li class="gallery-img-list">
+                              <input type="hidden" name="gallery[]" value="<?php echo $item;?>" />
+                              <img src="<?php echo base_url('uploads/gallery/'.$item);?>" />
+                              <div class="remove-image" onclick="jQuery(this).parent().remove();">X</div>
+                            </li>
+                            <?php }?>
+                            <li class="add-image" id="dragandrophandler">+</li>
+                        </ul>       
+                        <div class="clearfix"></div>
+                        <span class="gallery-upload-instruction">NB: you can drag drop to reorder the gallery photos. Photos are not resized.</span>
+                        <div class="clearfix clear-top-margin"></div>
+                    </div>
+                </div>  
+            
+>>>>>>> origin/master
 
         <div class="row">
 				<hr>

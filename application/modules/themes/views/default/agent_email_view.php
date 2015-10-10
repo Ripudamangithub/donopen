@@ -4,36 +4,23 @@
     <input type="hidden" name="title" value="<?php echo get_post_data_by_lang($post,'title'); ?>">
     <input type="hidden" name="url" value="<?php echo post_detail_url($post); ?>">
 
-    <div class="row">
-        <div class="col-md-4 col-sm-4">
-            <div class="form-group">
-                <label for="enquiryInput1"><?php echo lang_key('name'); ?></label>
-                <input type="text" placeholder="<?php echo lang_key('name'); ?>" value="<?php echo set_value('sender_name');?>" name="sender_name" id="sender_name" class="form-control">
-                <?php echo form_error('sender_name');?>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-            <div class="form-group">
-                <label for="enquiryInput2"><?php echo lang_key('email'); ?></label>
-                <input type="text" placeholder="<?php echo lang_key('email'); ?>" value="<?php echo set_value('sender_email');?>" name="sender_email" id="sender_email" class="form-control">
-                <?php echo form_error('sender_email');?>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-            <div class="form-group">
-                <label for="enquiryInput3"><?php echo lang_key('phone'); ?></label>
-                <input type="text" placeholder="<?php echo lang_key('phone'); ?>" value="<?php echo set_value('phone');?>" name="phone" id="phone" class="form-control">
-                <?php echo form_error('phone');?>
-            </div>
-        </div>
+    <div class="form-group">
+        <input type="text" placeholder="<?php echo lang_key('name'); ?>" value="<?php echo set_value('sender_name');?>" name="sender_name" id="sender_name" class="form-control">
+        <?php echo form_error('sender_name');?>
     </div>
     <div class="form-group">
-        <label for="enquiryInput3"><?php echo lang_key('subject'); ?></label>
+        <input type="text" placeholder="<?php echo lang_key('email'); ?>" value="<?php echo set_value('sender_email');?>" name="sender_email" id="sender_email" class="form-control">
+        <?php echo form_error('sender_email');?>
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="<?php echo lang_key('phone'); ?>" value="<?php echo set_value('phone');?>" name="phone" id="phone" class="form-control">
+        <?php echo form_error('phone');?>
+    </div>
+    <div class="form-group">
         <input type="text" placeholder="<?php echo lang_key('subject'); ?>" value="<?php echo set_value('subject');?>" name="subject" id="subject" class="form-control">
         <?php echo form_error('subject');?>
     </div>
     <div class="form-group">
-        <label for="enquiryInput4"><?php echo lang_key('message'); ?></label>
         <textarea rows="7" placeholder="<?php echo lang_key('message'); ?>" name="msg" id="msg" class="form-control"><?php echo set_value('msg');?></textarea>
         <?php echo form_error('msg');?>
     </div>

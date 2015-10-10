@@ -595,7 +595,7 @@ if ( ! function_exists('get_post_data_by_lang'))
 			if(isset($titles->{$lang}) &&  $titles->{$lang}!='')
 				return $titles->{$lang};
 			else
-				return $titles->{default_lang()};
+				return $titles["en"];
 		}
 		else
 		{

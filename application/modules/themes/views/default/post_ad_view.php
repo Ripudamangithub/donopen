@@ -313,7 +313,7 @@
                         <a href="<?php echo site_url('choose-package');?>" class=""><?php echo lang_key('change_package');?></a>
                     </div>
                 </div>
-                <?php }?>
+                <?php } ?>
 
 
 
